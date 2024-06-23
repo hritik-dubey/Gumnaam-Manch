@@ -17,18 +17,18 @@ const MessageSchema:Schema<Message> = new  Schema({
     }
 })
 
-export interface User extends Document{
+export interface IUser extends Document{
     username:string
     email:string
     password:string
     verifyCode:string
     verifyCodeExpiry:Date
-    isVaifed:boolean
+    isVerified:boolean
     isAcceptingMessage : boolean
     messages:Message[]
 }
 
-const UserSchema:Schema<User> = new  Schema({
+const UserSchema:Schema<IUser> = new  Schema({
     username:{
         type:String,
         required:[true,"Username is required"]
@@ -50,7 +50,7 @@ const UserSchema:Schema<User> = new  Schema({
         type:Date,
         required:[true,"code is expired"]
     },
-    isVaifed:{
+    isVerified:{
         type:Boolean,
         required:true,
         default:false
@@ -66,7 +66,7 @@ const UserSchema:Schema<User> = new  Schema({
     }
 })
 
-const UserMOdel = (mongoose.models.user as mongoose.Model<User>)
-    || mongoose.model<User>('User',UserSchema);
+const UserModel = (mongoose.models.user as mongoose.Model<IUser>)
+    || mongoose.model<IUser>('UserModel',UserSchema);
 
-export default UserMOdel;
+export default UserModel;
